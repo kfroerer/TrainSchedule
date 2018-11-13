@@ -19,6 +19,7 @@
     <div class="container">
         <div class="jumbotron">
             <h1 class="display-4"><i class="fas fa-train"></i> Arriving Trains</h1>
+            <h2 id="currentTime"></h2>
         </div>
         <div class="card-header">
             Arrivals
@@ -28,7 +29,7 @@
                         <thead>
                           <tr>
                             <th scope="col">Train Name</th>
-                            <th scope="col">Track #</th>
+                            <th scope="col">Destination</th>
                             <th scope="col">Next Arrival</th>
                             <th scope="col">Frequency (min)</th>
                             <th scope="col">Minutes Away</th>
@@ -46,8 +47,8 @@
                         <input class="form-control" id="name">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Track #</label>
-                        <input class="form-control" id="track">
+                        <label for="exampleFormControlInput1">Destination</label>
+                        <input class="form-control" id="destination">
                     </div>
         
                     <div class="form-group">
@@ -58,7 +59,9 @@
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Frequency (min)</label>
                         <input class="form-control" id="frequency">
-                    
+                    </div>
+                    <button class="btn btn-success" type="submit" id="submit-btn">Submit</button>
+
                     </form>
             </div>
     </div>
