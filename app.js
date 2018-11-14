@@ -41,12 +41,16 @@ $("#submit-btn").on("click", function (){
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
    
-    $("#destination").text(""); 
+    $("#name").val("");
+    $("#destination").val(""); 
+    $("#firstTrain").val("");
+    $("#frequency").val("");
+
 
 });
         
   
-database.ref().on("child_added", function(childsnapshot) {
+database.ref().on("child_added", function(childsnapshot, prevChildKey) {
     console.log(childsnapshot.val());
     destination = childsnapshot.val().destination;
     trainName = childsnapshot.val().trainName;
@@ -64,36 +68,33 @@ database.ref().on("child_added", function(childsnapshot) {
     var minutesAway = frequency - timeRemain;
     console.log("MINUTES TILL TRAIN: " + minutesAway);
     var nextTrain = moment().add(minutesAway, "minutes");
-    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
-
-    // var trainRow = $('<tr>');
-    // var tableName = $('<td>');
-    // tableName.text(childsnapshot.val().trainName);
-    
-    // var destination = $('<td>');
-    // destination.text(childsnapshot.val().destination);
-
-    // var nextTrain = $('<td>');
-    // nextTrain.text(childsnapshot.val().nextTrain);
-
-    // var frequency = $('<td>');
-    // frequency.text(childsnapshot.val().frequency);
-
-    // var minutesAway = $('<td>');
-    // minutesAway.text(childsnapshot.val().minutesAway);
-
-    // trainRow.append(tableName);
-    // trainRow.append(destination);
-    // trainRow.append(nextTrain);
-    // trainRow.append(frequency);
-    // trainRow.append(minutesAway);
-
-    // $('tbody').append(trainRow);
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));    
 });
-        
-// database.ref.limitToLast(1).on("child_added", function(childsnapshot){
 
-// })    
+database.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(childsnapshot){
+    var trainRow = $('<tr>');
+    var tableName = $('<td>');
+    tableName.text(childsnapshot.val().trainName);
+    
+    var destination = $('<td>');
+    destination.text(childsnapshot.val().destination);
 
+    var nextTraindata = $('<td>');
+    nextTraindata.text(childsnapshot.val().nextTrain);
 
+    var frequency = $('<td>');
+    frequency.text(childsnapshot.val().frequency);
+
+    var minutesAwaydata = $('<td>');
+    minutesAwaydata.text(childsnapshot.val().minutesAway);
+
+    trainRow.append(tableName);
+    trainRow.append(destination);
+    trainRow.append(nextTraindata);
+    trainRow.append(frequency);
+    trainRow.append(minutesAwaydata);
+
+    $('tbody').append(trainRow);
+
+});
 });
