@@ -1,6 +1,16 @@
 .jumbotron {
     text-align: center;
+    background-image: url("./images/cologne-1527780_1280copy.jpg");
+    background-position: right bottom -38px;
+    
 }
 .card-body {
     padding: 0;
+}
+
+.display-4 {
+    color: black;
+}
+#currentTime {
+    color: black;
 }
