@@ -33,3 +33,13 @@ body {
 .form-control {
     background-color: lightgray;
 }
+.removeBtn {
+    margin-top: 8%;
+    background-color: rgb(172, 193, 178);
+}
+.removeBtn:hover {
+    background-color: rgb(162, 178, 193);
+}
+.removeBtn:active {
+    transform: translateY(4px);
+}

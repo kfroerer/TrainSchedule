@@ -79,19 +79,38 @@ $(document).ready(function(){
 
         var minutesAwaydata = $('<td>');
         minutesAwaydata.text(minutesAway);
+         
+        var removeBtn = $('<button>');
+        removeBtn.addClass("button removeBtn");
+        removeBtn.text("Remove");
 
         trainRow.append(tableName);
         trainRow.append(destination);
         trainRow.append(nextTraindata);
         trainRow.append(frequency);
         trainRow.append(minutesAwaydata);
+        trainRow.append(removeBtn);
 
         $('tbody').append(trainRow);       
 
     }); 
-   
-    // var reload = function(){   
-    //     location.reload(true);
-    // }  
-    // setInterval(reload, 60000)
+    
+    
+    $(document).on("click", ".removeBtn", function(){
+        console.log("clicked");
+        $(this).parent().remove();
+    })      
+        
+    var reload = function(){   
+        location.reload(true);
+    }  
+    setInterval(reload, 60000);
+    // database.ref().set({
+    //         destination,
+    //         trainName,
+    //         firstTrain,
+    //         frequency,
+    //         dateAdded: firebase.database.ServerValue.TIMESTAMP
+    //     });
+
 });
