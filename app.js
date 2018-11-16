@@ -21,6 +21,7 @@ $(document).ready(function(){
     var frequency = "";
     var nextTrain = "";
     var minutesAway = "";
+    var id; 
     
     
     $("#submit-btn").on("click", function (){
@@ -46,6 +47,7 @@ $(document).ready(function(){
     
     database.ref().on("child_added", function(childsnapshot, prevChildKey) {
         // console.warn('ADDED NEW CHOO', childsnapshot.val());
+        id = childsnapshot.key;
         var currentTrain = childsnapshot.val();
         destination = currentTrain.destination;
         trainName = currentTrain.trainName;
@@ -98,7 +100,10 @@ $(document).ready(function(){
     
     $(document).on("click", ".removeBtn", function(){
         console.log("clicked");
-        $(this).parent().remove();
+        var deletedRow = $(this).parent();
+        deletedRow.remove();
+        database.ref(id).remove();
+        //need to remove from firebase
     })      
         
     var reload = function(){   
